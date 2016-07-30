@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<!--
+ArduWeather
+Adam Zeloof
+http://adam.zeloof.xyz
+7/30/2016
+-->
+<html>
+
+<head>
+	<title>ArduWeather</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Raleway">
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+	<script src="charts.js"></script>
+	<script src="scripts.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+	<script src="fetchAndUpdate.js"></script>
+	<script>
+		pullData();
+		setTimeout(updateLocal, 5000);
+		setTimeout(updateHistorical, 5000);
+	</script>
+</head>
+
+<body onload="init()">
+	<div class="container-fluid">
+		<div class="row">
+			<nav class="navbar navbar-inverse">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<a class="navbar-brand" href="#">ArduWeather</a>
+					</div>
+					<ul class="nav navbar-nav">
+						<li onClick=show('currentPage')><a>Current</a></li>
+						<li onClick=show('historicalPage')><a>History</a></li>
+						<li><a>Forecast</a></li>
+						<li><a>Raw Data</a></li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li>
+							<a id="clock"></a>
+						</li>
+					</ul>
+				</div>
+			</nav>
+		</div>
+		<!--Current Data Page-->
+		<div id="currentPage">
+			<div class="row">
+				<div class="col-md-6 col-xs-12">
+					<img src="http://api.wunderground.com/api/MY_API_KEY/radar/image.gif?centerlat=0&centerlon=0&radius=20&width=600&height=480&newmaps=1" id="radar" class="img-responsive center-block"></img>
+				</div>
+				<div class="col-md-6">
+					<div class="row">
+						<div class="col-md-6">
+							<div class="row">
+								<div class="col-md-6">
+									<div id="sunriseTime"></div>
+									<div id="sunsetTime"></div>
+								</div>
+								<div class="col-md-6">
+									<div id="moonriseTime"></div>
+									<div id="moonsetTime"></div>
+								</div>
+							</div>
+							<div class="row">
+								<div id="windGauge" class="gauge"></div>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div id="rainGauge" class="gauge"></div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-3">
+							<h3>Wind Direction</h3>
+						</div>
+						<div class="col-md-3">
+							<h3>Recent Wind Speed</h3>
+						</div>
+						<div class="col-md-3">
+							<h3>Recent Wind Dir.</h3>
+						</div>
+						<div class="col-md-3">
+							<h3>Recent Wind Gusts</h3>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-3 col-xs-6">
+					<div id="tempGauge" class="gauge"></div>
+				</div>
+				<div class="col-md-3 col-xs-6">
+					<div id="humidityGauge" class="gauge"></div>
+				</div>
+				<div class="col-md-3 col-xs-6">
+					<div id="pressureGauge" class="gauge"></div>
+				</div>
+				<div class="col-md-3 col-xs-6">
+					<div id="lightGauge" class="gauge"></div>
+				</div>
+			</div>
+		</div>
+
+		<!--Historical Data Page-->
+		<div id="historicalPage">
+			<div class="row">
+				<h2>One Hour History</h2>
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					<div id="temp1hrChart" class="gauge"></div>
+				</div>
+				<div class="col-md-6">
+					<div id="humidity1hrChart" class="gauge"></div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					<div id="pressure1hrChart"></div>
+				</div>
+				<div class="col-md-6">
+					<div id="light1hrChart"></div>
+				</div>
+			</div>
+			<div class="row">
+				<h2>24-Hour History</h2>
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					<div id="temp24hrChart"></div>
+				</div>
+				<div class="col-md-6">
+					<div id="humidity24hrChart"></div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					<div id="pressure24hrChart"></div>
+				</div>
+				<div class="col-md-6">
+					<div id="light24hrChart"></div>
+				</div>
+			</div>
+		</div>
+		<script>
+			document.getElementById('historicalPage').style.display="none";
+		</script>
+</body>
+
+</html>

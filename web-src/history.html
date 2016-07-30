@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<!--
+ArduWeather
+Adam Zeloof
+http://adam.zeloof.xyz
+7/30/2016
+-->
+<html>
+
+<head>
+		<title>Weather</title>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Raleway">
+		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="historicalCharts.js"></script>
+		<script src="scripts.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+		<script src="fetchAndUpdate.js"></script>
+		<script>
+		  pullData();
+			setTimeout(updateHistorical, 3000);
+		</script>
+</head>
+
+<body onload="init()">
+		<div class="container-fluid">
+				<div class="row">
+					<nav class="navbar navbar-inverse">
+					  <div class="container-fluid">
+					    <div class="navbar-header">
+					      <a class="navbar-brand" href="#">Zeloof Weather</a>
+					    </div>
+					    <ul class="nav navbar-nav">
+					      <li><a href="index.html">Current</a></li>
+					      <li class="active"><a href="#">History</a></li>
+					      <li><a href="#">Raw Data</a></li>
+					    </ul>
+							<ul class="nav navbar-nav navbar-right">
+    						<li><a id="clock"></a></li>
+    					</ul>
+					  </div>
+					</nav>
+        </div>
+				<div class="row">
+					<h2>One Hour History</h2>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<div id="temp1hrChart"></div>
+					</div>
+					<div class="col-md-6">
+						<div id="humidity1hrChart"></div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<div id="pressure1hrChart"></div>
+					</div>
+					<div class="col-md-6">
+						<div id="light1hrChart"></div>
+					</div>
+			</div>
+			<div class="row">
+				<h2>24-Hour History</h2>
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+				<div id="temp24hrChart"></div>
+			</div>
+			<div class="col-md-6">
+				<div id="humidity24hrChart"></div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+				<div id="pressure24hrChart"></div>
+			</div>
+			<div class="col-md-6">
+				<div id="light24hrChart"></div>
+			</div>
+	</div>
+</body>
+
+</html>
